@@ -45,7 +45,7 @@ group :development, :test do
   gem 'cucumber-rails', :require=>false
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.7'
-  gem 'pg'
+  #gem 'pg'
 end
 
 group :development do
@@ -59,10 +59,6 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-cucumber'
 end
-
-# group :production do
-#   gem 'pg'
-# end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
