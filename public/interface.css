@@ -1,0 +1,38 @@
+body {
+	background-color: #800000;
+}
+
+.googleMap{
+	position: absolute;
+	left: 65vw;
+	top: 2vw;
+	width: 30vw;
+	height: 42.5vw;
+	background-color: white;
+}
+
+.streetView{
+	position: absolute;
+	left: 5vw;
+	top: 2vw;
+	width: 30vw;
+	height: 42.5vw;
+	background-color: yellow;
+}
+
+.currentStatus{
+	position: absolute;
+	left: 40vw;
+	top: 15vw;
+	width: 20vw;
+	height: 30vw;
+	background-color: blue;
+}
+
+.logo{
+	position: absolute;
+	left: 37.5vw;
+	top: 2vw;
+	max-width: 25vw;
+	max-height: 10vw;
+}
