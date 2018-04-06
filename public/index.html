@@ -3,8 +3,8 @@
   <head>  
     <meta charset="UTF-8">
     <title>TAMUber</title>
-    <script type="text/javascript" src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-    <script type="text/javascript" src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
     <script src="../js/connect.js"></script>
     <link rel="stylesheet" href="interface.css">
   </head>
@@ -15,8 +15,25 @@
       <div id = 'text' class='directionDescription'> </div>
       <div id = 'distance' class='directionDistance'> </div>
     </div>
-  	<div class='currentStatus'>Ride Details</div>
+  	<div class='currentStatus'>
+  	  <img id='studentPic' src='../img/student.jpg'>
+  	  <div id='studentName'>
+  	    Dummy name here
+  	  </div>
+  	  <div id='UIN'>
+  	    1234567789
+  	  </div>
+  	  <div id='route-start'>
+  	    String here
+  	  </div>
+  	  <div id='route-end'>
+  	    String here
+  	  </div>
+  	</div>
   	<img src='../img/logo.jpg' class='logo'>
+  	
+  	
+  	<script src="../js/studentInfo.js"></script>
   	<script src='../js/maps.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBppKlte-Vx-6ZCc5a8yVb6y7nZPjaoOuw&callback=myMap"></script> 
   </body>

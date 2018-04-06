@@ -17,7 +17,7 @@ body {
 	top: 2vw;
 	width: 30vw;
 	height: 42.5vw;
-	background-color: yellow;
+	background-color: white;
 	text-align: center;
 	vertical-align: middle;
 	line-height: 5vw;
@@ -51,7 +51,8 @@ body {
 	top: 15vw;
 	width: 20vw;
 	height: 30vw;
-	background-color: blue;
+	background-color: white;
+	font-size:2vw;
 }
 
 .logo{
@@ -60,4 +61,38 @@ body {
 	top: 2vw;
 	max-width: 25vw;
 	max-height: 10vw;
+}
+
+#studentPic {
+	max-height: 10vw;
+	max-width: 10vw;
+	position:relative;
+	top:1vw;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#studentName{
+	position:relative;
+	text-align: center;
+	top: 3vw;
+}
+
+#UIN{
+	position:relative;
+	text-align: center;
+	top: 4vw;
+}
+
+#route-start{
+	position:relative;
+	text-align: center;
+	top: 5vw;
+}
+
+#route-end{
+	position:relative;
+	text-align: center;
+	top: 6vw;
 }
