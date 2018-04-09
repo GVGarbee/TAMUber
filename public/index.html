@@ -15,7 +15,14 @@
       <div id = 'text' class='directionDescription'> </div>
       <div id = 'distance' class='directionDistance'> </div>
     </div>
-  	<div class='currentStatus'>
+  	<div id='form' class='currentStatus'>
+	    <br>Verify UIN<br>
+      <input type='text' id='inputUIN'>
+      <br><br>
+      <input type='submit' value='Submit' id='submit'>
+      <br><div id='valid'></div>
+  	</div>
+  	<div id='result' class='currentStatus'>
   	  <img id='studentPic' src='assets/student.jpg'>
   	  <div id='studentName'>
   	    Dummy name here
@@ -32,8 +39,7 @@
   	</div>
   	<img src='assets/logo.jpg' class='logo'>
   	
-  	
-  	<script src="assets/studentInfo.js"></script>
+    <script src="assets/studentInfo.js"></script>
   	<script src='assets/maps.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBppKlte-Vx-6ZCc5a8yVb6y7nZPjaoOuw&callback=myMap"></script> 
   </body>
