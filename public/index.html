@@ -15,13 +15,15 @@
       <div id = 'text' class='directionDescription'> </div>
       <div id = 'distance' class='directionDistance'> </div>
     </div>
-  	<div id='form' class='currentStatus'>
+    
+  	<div id='form'>
 	    <br>Verify UIN<br>
       <input type='text' id='inputUIN'>
       <br><br>
-      <input type='submit' value='Submit' id='submit'>
+      <input type='submit' value='Submit' id='submit' onclick="validateUIN()">
       <br><div id='valid'></div>
   	</div>
+  	
   	<div id='result' class='currentStatus'>
   	  <img id='studentPic' src='assets/student.jpg'>
   	  <div id='studentName'>

@@ -2,46 +2,18 @@
 var stepDisplay;
 var map;
 var markerArray = [];
+var directionsService;
+var directionsDisplay;
 function myMap() {
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
     var mapOptions = {
         center: new google.maps.LatLng(30.6180,-96.3344),
-        zoom: 15,
+        zoom: 17,
         mapTypeId: google.maps.MapTypeId.HYBRID
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     stepDisplay = new google.maps.InfoWindow();
-    var pos;
-    var directionsService;
-    var directionsDisplay;
-    directionsService = new google.maps.DirectionsService();
-    directionsDisplay = new google.maps.DirectionsRenderer();
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(function(position){
-            pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            map.setCenter(pos);
-        });
-    }else{
-        pos = new google.maps.LatLng(30.6180,-96.3344)
-    }
-    var end = new google.maps.LatLng(30.623797, -96.337470);
-    var start =  new google.maps.LatLng(30.6180,-96.3344);
-    directionsDisplay.setMap(map);
-    //directionsDisplay.setPanel(document.getElementById('turn_by_turn'));
-    var request = {
-        origin: start,
-        destination: end,
-        travelMode: 'DRIVING'
-    };
-    directionsService.route(request, function(result, status){
-        if(status == 'OK'){
-            directionsDisplay.setDirections(result);
-            showSteps(result);
-        }
-    });
-    
 }
 
 
@@ -50,16 +22,20 @@ function showSteps(directionResult){
   // info window. Also attach the marker to an array so we
   // can keep track of it and remove it when calculating new
   // routes.
-  var myRoute = directionResult.routes[0].legs[0];
-
-  for (var i = 0; i < myRoute.steps.length; i++) {
-      var marker = new google.maps.Marker({
-        position: myRoute.steps[i].start_point,
-        map: map
-      });
-      attachInstructionText(marker, myRoute.steps[i].instructions, myRoute.steps[i].distance);
-      markerArray[i] = marker;
+  var myRoute = directionResult.routes[0];
+  console.log("Length: " + myRoute.legs.length);
+  for (var j = 0; j < myRoute.legs.length; j++){
+    for (var i = 0; i < myRoute.legs[j].steps.length; i++) {
+        var marker = new google.maps.Marker({
+          position: myRoute.legs[j].steps[i].start_point,
+          map: map
+        });
+        attachInstructionText(marker, myRoute.legs[j].steps[i].instructions, myRoute.legs[j].steps[i].distance);
+        markerArray.push(marker);
+    }
   }
+
+  console.log(markerArray.length);
 }
 
 function attachInstructionText(marker, text, distance) {
@@ -68,4 +44,45 @@ function attachInstructionText(marker, text, distance) {
     (document.getElementById('distance')).innerHTML = distance.text;
 
   });
+}
+
+
+function mapDisplay(waypointsArray){
+    //If waypointsArray is >20  steps, need to grab 20 waypoints across an even 
+    //distribution in the array and create google waypoint object for each
+
+    console.log(waypointsArray.length);
+
+    var iterator = Math.ceil(waypointsArray.length / 20);
+    var googleWayPts = [];
+    for (var i = 0; i < waypointsArray.length; i += iterator){
+      googleWayPts.push({
+        location: new google.maps.LatLng(waypointsArray[i].x, waypointsArray[i].y),
+        stopover: true
+      });
+      }
+
+
+      // Display the route 
+    directionsService.route({
+      origin : googleWayPts[0].location,
+      destination: googleWayPts[googleWayPts.length - 1].location,
+      waypoints: googleWayPts,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+    }, function(response, status){
+        if (status=='OK') {
+            directionsDisplay.setDirections(response);
+            showSteps(response);
+        }
+        else{
+          window.alert("Directions failed due to " + status + "\n");
+          console.log("directionsService failed");
+        }
+
+
+
+    });
+
+    map.setCenter(googleWayPts[0].location);
+
 }
