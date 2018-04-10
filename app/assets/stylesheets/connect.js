@@ -1,4 +1,7 @@
-    
+   
+
+   function connectServer(){ 
+    //Create connection to ROS server :: NOTE: Uses insecure connection ws:// instead of secure wss://
     var rosServer = new ROSLIB.Ros({
      url : 'ws://166.155.203.130:9090'
     });
@@ -19,7 +22,7 @@
         //our position-  /vectornav/fix, ros sensor_msg GPS - navsatfix
         //array of waypoints -  /waypoints_lla, ros visualization_msg - Marker
    
-   //Listener for waypoints
+   //Create listener for waypoints published by server
      var waypoint_listener = new ROSLIB.Topic({
        ros : rosServer,
        name : '/waypoints_lla',
@@ -41,5 +44,20 @@
         }
 
         //TODO: push waypointsArray to another function for display
+        mapDisplay(waypointsArray);
 
      });
+
+     //Listener for current position
+    var location_listener = new ROSLIB.Topic({
+       ros : rosServer,
+       name : '/vectornav/fix'
+       //messageType : 'sensor_msgs/NatSavFix'
+     });
+
+    location_listener.subscribe(function(message){
+      console.log("Latitude: " + message.latitude + " \nLongitude: " + message.longitude);
+      location_listener.unsubscribe();
+  });
+
+  }
