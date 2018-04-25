@@ -22,6 +22,11 @@ function showSteps(directionResult){
   // info window. Also attach the marker to an array so we
   // can keep track of it and remove it when calculating new
   // routes.
+  
+  //A leg is a stretch of a route, which is made of steps with directions.
+  //They're generated in the call to Google Maps API, and are passed into this function in the bundle directionresult,
+  //which is a collection of possible routes.
+  
   var myRoute = directionResult.routes[0];
   console.log("Length: " + myRoute.legs.length);
   for (var j = 0; j < myRoute.legs.length; j++){

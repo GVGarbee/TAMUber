@@ -3,15 +3,17 @@
   <head>  
     <meta charset="UTF-8">
     <title>TAMUber</title>
+    <!--
     <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    -->
     <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
-    <script src="assets/connect.js"></script>
+    <script src="../js/connect.js"></script>
     <link rel="stylesheet" href="interface.css">
   </head>
 
   <body>
   	<div id='map_canvas' class='googleMap'> GoogleMap </div>
-  	<div id='turn_by_turn' class='streetView'>StreetView
+  	<div id='turn_by_turn' class='directionView'>Next Direction
       <div id = 'text' class='directionDescription'> </div>
       <div id = 'distance' class='directionDistance'> </div>
     </div>
@@ -25,7 +27,7 @@
   	</div>
   	
   	<div id='result' class='currentStatus'>
-  	  <img id='studentPic' src='assets/student.jpg'>
+  	  <img id='studentPic' src='../img/student.jpg'>
   	  <div id='studentName'>
   	    Dummy name here
   	  </div>
@@ -39,10 +41,15 @@
   	    String here
   	  </div>
   	</div>
-  	<img src='assets/logo.jpg' class='logo'>
   	
-    <script src="assets/studentInfo.js"></script>
-  	<script src='assets/maps.js'></script>
+  	<div id='obstacle' class='runStatus'>
+      Status: Ok
+    </div>
+    
+  	<img src='../img/logo1.png' class='logo'>
+  	
+    <script src="../js/studentInfo.js"></script>
+  	<script src='../js/maps.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBppKlte-Vx-6ZCc5a8yVb6y7nZPjaoOuw&callback=myMap"></script> 
   </body>
 </html>

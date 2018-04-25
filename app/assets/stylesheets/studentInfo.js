@@ -10,10 +10,9 @@ var data = JSON.parse(text);
 function validateUIN(){
 	var inputUIN = (document.getElementById('inputUIN')).value;
 	if (inputUIN == data.UIN){
-		connectServer();
 		link.style.visibility = 'visible';
-		(document.getElementById('inputUIN')).style.visibility = 'hidden';
-
+		document.getElementById('form').style.visibility = 'hidden';
+		connectServer();
 	}
 	else{
 		(document.getElementById('valid')).innerHTML = "Invalid UIN: " + inputUIN;
