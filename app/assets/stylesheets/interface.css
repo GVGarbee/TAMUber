@@ -1,0 +1,125 @@
+body {
+	background-color: #D3D3D3;
+}
+
+.googleMap{
+	position: absolute;
+	left: 4vw;
+	top: 19vw;
+	width: 60vw;
+	height: 30vw;
+	background-color: white;
+}
+
+.runStatus{
+	position:absolute;
+	background-color: lightgreen;
+	width:30vw;
+	height:15vw;
+	left:67vw;
+	top:2vw;
+	text-align: center;
+}
+
+.directionView{
+	position: absolute;
+	left: 67vw;
+	top: 19vw;
+	width: 30vw;
+	height: 30vw;
+	background-color: white;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 5vw;
+	font-size: 2vw;
+}
+
+.directionDescription{
+	position:relative;
+	left: 5vw;
+	top: 2vw;
+	width: 20vw;
+	height: 10vw;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#rightButton{
+	position:absolute;
+	width:1vw;
+	height:5vw;
+	left:90vw;
+	top:43vw;
+
+}
+
+#leftButton{
+	position:absolute;
+	width:1vw;
+	height:5vw;
+	left:69vw;
+	top:43vw;
+
+}
+
+.directionDistance{
+	position:relative;
+	left: 5vw;
+	top: 10vw;
+	width: 20vw;
+	height: 10vw;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+.currentStatus{
+	position: absolute;
+	left: 4vw;
+	top: 2vw;
+	width: 30vw;
+	height: 15vw;
+	background-color: white;
+	font-size:2vw;
+}
+
+.logo{
+	position: absolute;
+	left: 37.5vw;
+	top: 2vw;
+	max-width: 25vw;
+	max-height: 10vw;
+}
+
+#studentPic {
+	max-height: 10vw;
+	max-width: 10vw;
+	position:relative;
+	top:2.5vw;
+	display: block;
+    left: 1vw;
+}
+
+#studentName{
+	position:relative;
+	top: -8vw;
+	left:15vw;
+}
+
+#UIN{
+	position:relative;
+	left: 15vw;
+	top: -7vw;
+}
+
+#route-start{
+	position:relative;
+	left: 15vw;
+	top: -6vw;
+}
+
+#route-end{
+	position:relative;
+	left:15vw;
+	top: -5vw;
+}

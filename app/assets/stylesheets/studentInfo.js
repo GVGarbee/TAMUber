@@ -12,7 +12,7 @@ var data = JSON.parse(text);
 function validateUIN(){
 	var inputUIN = (document.getElementById('inputUIN')).value;
 	if (inputUIN == data.UIN){
-		//connectServer();
+		connectServer();
 		link.style.visibility = 'visible';
 		(document.getElementById('inputUIN')).style.visibility = 'hidden';
 
