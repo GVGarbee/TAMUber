@@ -4,6 +4,9 @@ var map;
 var markerArray = [];
 var directionsService;
 var directionsDisplay;
+var globalIndex = -2;
+var infoArray = [];
+
 function myMap() {
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -13,6 +16,7 @@ function myMap() {
         mapTypeId: google.maps.MapTypeId.HYBRID
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    directionsDisplay.setPanel(document.getElementById('instructions'));
     stepDisplay = new google.maps.InfoWindow();
 }
 
@@ -27,7 +31,7 @@ function showSteps(directionResult){
   //They're generated in the call to Google Maps API, and are passed into this function in the bundle directionresult,
   //which is a collection of possible routes.
   
-  var myRoute = directionResult.routes[0];
+   var myRoute = directionResult.routes[0];
   console.log("Length: " + myRoute.legs.length);
   for (var j = 0; j < myRoute.legs.length; j++){
     for (var i = 0; i < myRoute.legs[j].steps.length; i++) {
@@ -35,11 +39,20 @@ function showSteps(directionResult){
           position: myRoute.legs[j].steps[i].start_point,
           map: map
         });
-        attachInstructionText(marker, myRoute.legs[j].steps[i].instructions, myRoute.legs[j].steps[i].distance);
-        markerArray.push(marker);
+        //console.log("Instruction: " + myRoute.legs[j].steps[i].instructions);
+        //console.log("Instruction contains turn? : " + myRoute.legs[j].steps[i].instructions.includes("Turn"));
+        if (true === myRoute.legs[j].steps[i].instructions.includes("Turn")){
+          attachInstructionText(marker, myRoute.legs[j].steps[i].instructions, myRoute.legs[j].steps[i].distance);
+          markerArray.push(marker);
+          infoArray.push({
+          "text":myRoute.legs[j].steps[i].instructions,
+          "distance":myRoute.legs[j].steps[i].distance.text
+        });
+        }
+
     }
   }
-
+  console.log("InfoArray length: " + infoArray.length);
   console.log(markerArray.length);
 }
 
@@ -67,7 +80,9 @@ function mapDisplay(waypointsArray){
       });
       }
 
-
+      // Update globalIndex to show infoArray has been initialized
+       globalIndex = -1;
+       
       // Display the route 
     directionsService.route({
       origin : googleWayPts[0].location,
@@ -91,3 +106,27 @@ function mapDisplay(waypointsArray){
     map.setCenter(googleWayPts[0].location);
 
 }
+
+function moveMarker(direction){
+  console.log("Value of globalIndex: " + globalIndex);
+  console.log(infoArray[globalIndex]);
+  if (globalIndex == -2){
+    console.log("Server not connected, validate UIN.");
+  }
+  else{
+    if ((direction == 'left') && (globalIndex > 0)){
+      globalIndex--;
+      document.getElementById('text').innerHTML = infoArray[globalIndex].text;
+      document.getElementById('distance').innerHTML = infoArray[globalIndex].distance;
+      return
+      }
+    else if ((direction == 'right') && (globalIndex < markerArray.length-1)){
+      globalIndex++;
+      document.getElementById('text').innerHTML = infoArray[globalIndex].text;
+      document.getElementById('distance').innerHTML = infoArray[globalIndex].distance;
+      return
+      }
+    }
+  console.log("Error displaying instruction");
+  }
+  

@@ -44,6 +44,24 @@ body {
 	vertical-align: middle;
 }
 
+#rightButton{
+	position:absolute;
+	width:1vw;
+	height:5vw;
+	left:90vw;
+	top:43vw;
+
+}
+
+#leftButton{
+	position:absolute;
+	width:1vw;
+	height:5vw;
+	left:69vw;
+	top:43vw;
+
+}
+
 .directionDistance{
 	position:relative;
 	left: 5vw;
